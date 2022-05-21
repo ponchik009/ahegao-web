@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
+  const [monday, setMonday] = React.useState(new Date());
+  const [nowDate, setNowDate] = React.useState(new Date());
+
+  React.useEffect(() => {
+    const date = new Date();
+    date.setDate(date.getDate() - date.getDay() + 1);
+    setMonday(date);
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>Текущая дата: {nowDate.toISOString().split("T")[0]}</div>
+      <div>Начало недели: {monday.toISOString().split("T")[0]}</div>
     </div>
   );
 }
