@@ -1,0 +1,5 @@
+import trueAxios from "axios";
+
+export const axios = trueAxios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+});
