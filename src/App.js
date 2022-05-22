@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { getSchedule } from "./api/api";
+import React from "react";
+import { getScheduleByGroup } from "./api/api";
 import "./App.css";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -21,12 +23,20 @@ function App() {
 
   React.useEffect(() => {
     const date = new Date();
-    date.setDate(date.getDate() - date.getDay() + 1);
+    if (date.getDay() == 0) date.setDate(date.getDate() - 6);
+    else date.setDate(date.getDate() - date.getDay() + 1);
     setMonday(date);
   }, []);
 
   React.useEffect(() => {
-    setSchedule(getSchedule(monday.toISOString().split("T")[0], "Мумрики"));
+    if (monday.getDay() !== 1) return;
+
+    getScheduleByGroup(monday.toISOString().split("T")[0], "Мумрики").then(
+      (data) => {
+        console.log(data);
+        setSchedule(data);
+      }
+    );
   }, [monday]);
 
   return (
@@ -49,6 +59,22 @@ function App() {
         <BottomNavigationAction style={{marginLeft:'150px', marginTop:'230px'}} label="Расписание по аудиториям" icon={<MeetingRoomIcon sx={{ fontSize: 100 }}/>} />
       </BottomNavigation>
     </Box>
+    <div className="App">
+      <div>Текущая дата: {nowDate.toISOString().split("T")[0]}</div>
+      <div>Начало недели: {monday.toISOString().split("T")[0]}</div>
+      {schedule.length ? (
+        <ul>
+          {schedule.map((pair) => (
+            <li key={pair.id} style={{ border: "1px solid black" }}>
+              <div>{pair.discipline}</div>
+              <div>День недели: {pair.day}</div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div>Пар на эту неделю не найдено :C</div>
+      )}
+    </div>
     </div>
   );
 }
