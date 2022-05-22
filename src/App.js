@@ -3,7 +3,11 @@ import "./App.css";
 import AppRouter from "./components/Router/AppRouter";
 
 function App() {
-  return <AppRouter />;
+  return (
+    <div className="App">
+      <AppRouter />
+    </div>
+  );
 }
 
 export default App;
