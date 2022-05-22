@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { getSchedule } from "./api/api";
 import React from "react";
-import { getScheduleByGroup } from "./api/api";
 import "./App.css";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
