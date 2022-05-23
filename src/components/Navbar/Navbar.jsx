@@ -18,6 +18,9 @@ const Navbar = ({ size = 1, active }) => {
     & .MuiBottomNavigationAction-label {
       font-size: calc((1.5vh + 1.5vw) * ${size});
     }
+    & .Mui-selected {
+      font-size: calc((1.5vh + 2vw) * ${size});
+    }
   `;
 
   return (
