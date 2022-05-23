@@ -2,7 +2,7 @@ import React from "react";
 
 import Navbar from "../../components/Navbar/Navbar";
 
-const GroupsPage = () => {
+const AuditoriesPage = () => {
   return (
     <div>
       <div
@@ -12,10 +12,10 @@ const GroupsPage = () => {
           alignItems: "center",
         }}
       >
-        <Navbar size={0.5} active={0} />
+        <Navbar size={0.5} active={2} />
       </div>
     </div>
   );
 };
 
-export default GroupsPage;
+export default AuditoriesPage;

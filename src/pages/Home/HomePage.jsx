@@ -1,9 +1,18 @@
+import { Typography } from "@mui/material";
 import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 
 const HomePage = () => {
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+      }}
+    >
+      <Typography sx={{ fontSize: "10vw" }}>Расписание</Typography>
       <Navbar />
     </div>
   );

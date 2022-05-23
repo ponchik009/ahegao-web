@@ -1,54 +1,58 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./Navbar.css";
-import Box from '@mui/material/Box';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import GroupIcon from '@mui/icons-material/Group';
-import SchoolIcon from '@mui/icons-material/School';
-import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import Box from "@mui/material/Box";
+import BottomNavigation from "@mui/material/BottomNavigation";
+import BottomNavigationAction from "@mui/material/BottomNavigationAction";
+import GroupIcon from "@mui/icons-material/Group";
+import SchoolIcon from "@mui/icons-material/School";
+import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
+import { styled } from "@mui/material";
 
-const Navbar = ({ animated = false }) => {
+// import "./Navbar.css";
+
+const Navbar = ({ size = 1, active }) => {
   const navigate = useNavigate();
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(active);
+
+  const StyledAction = styled(BottomNavigationAction)`
+    & .MuiBottomNavigationAction-label {
+      font-size: calc((1.5vh + 1.5vw) * ${size});
+    }
+  `;
+
   return (
-    // <nav className="nav">
-    //   <div
-    //     className={`nav_item group ${animated ? "anim_group" : ""}`}
-    //     onClick={() => navigate("/groups", { state: { animated: true } })}
-    //   >
-    //     Группы
-    //   </div>
-    //   <div
-    //     className="nav_item teacher"
-    //     onClick={() => navigate("/groups", { state: { animated: true } })}
-    //   >
-    //     Преподаватели
-    //   </div>
-    //   <div
-    //     className="nav_item auditory"
-    //     onClick={() => navigate("/groups", { state: { animated: true } })}
-    //   >
-    //     Аудитории
-    //   </div>
-    // </nav>
-    <Box sx={{ width: '100%'}} >
+    <Box sx={{ width: `${100 * size}%`, marginTop: `3%` }}>
       <BottomNavigation
         showLabels
         value={value}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}
+        sx={{
+          display: "flex",
+          justifyContent: "space-around",
+          alignItems: "center",
+        }}
       >
-        <BottomNavigationAction style={{ marginTop:'15px'}} label="Расписание по группам" icon={<GroupIcon fontSize="large"/>} 
-         className={`nav_item group ${animated ? "anim_group" : ""}`}
-         onClick={() => navigate("/groups", { state: { animated: true } })}/>
-        <BottomNavigationAction style={{ marginTop:'15px'}} label="Расписание по преподавателям" icon={<SchoolIcon fontSize="large"/>} 
-        className={`nav_item group ${animated ? "anim_group" : ""}`}
-        onClick={() => navigate("/teachers", { state: { animated: true } })}/>
-        <BottomNavigationAction style={{ marginTop:'15px'}} label="Расписание по аудиториям" icon={<MeetingRoomIcon fontSize="large"/>} 
-        className={`nav_item group ${animated ? "anim_group" : ""}`}
-        onClick={() => navigate("/auditories", { state: { animated: true } })}/>
+        <StyledAction
+          label="Расписание по группам"
+          icon={<GroupIcon sx={{ fontSize: `calc((5vh + 3vw) * ${size})` }} />}
+          onClick={() => {
+            navigate("/groups");
+          }}
+        />
+        <StyledAction
+          label="Расписание по преподавателям"
+          icon={<SchoolIcon sx={{ fontSize: `calc((5vh + 3vw) * ${size})` }} />}
+          onClick={() => navigate("/teachers")}
+        />
+        <StyledAction
+          label="Расписание по аудиториям"
+          icon={
+            <MeetingRoomIcon sx={{ fontSize: `calc((5vh + 3vw) * ${size})` }} />
+          }
+          onClick={() => navigate("/auditories")}
+        />
       </BottomNavigation>
     </Box>
   );
