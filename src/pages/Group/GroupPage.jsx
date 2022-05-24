@@ -1,4 +1,6 @@
 import React from "react";
+
+import Navbar from "../../components/Navbar/Navbar";
 import { ApiSchedule } from "../../api/api";
 
 const GroupPage = () => {
@@ -27,7 +29,16 @@ const GroupPage = () => {
   }, [monday]);
 
   return (
-    <div className="App">
+    <>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Navbar size={0.5} active={0} />
+      </div>
       <div>Текущая дата: {nowDate.toISOString().split("T")[0]}</div>
       <div>Начало недели: {monday.toISOString().split("T")[0]}</div>
       {schedule.length ? (
@@ -42,7 +53,7 @@ const GroupPage = () => {
       ) : (
         <div>Пар на эту неделю не найдено :(</div>
       )}
-    </div>
+    </>
   );
 };
 

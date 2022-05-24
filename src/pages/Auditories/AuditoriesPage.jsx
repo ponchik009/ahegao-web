@@ -3,8 +3,18 @@ import { Container } from "@mui/material";
 
 import ItemsList from "../../components/ItemsList/ItemsList";
 import Navbar from "../../components/Navbar/Navbar";
+import { ApiData } from "../../api/api";
+import { useFetch } from "../../hooks/UseFetch";
 
 const AuditoriesPage = () => {
+  const [auditories, fetchAuditories, isLoading] = useFetch(
+    ApiData.getAuditories
+  );
+
+  React.useEffect(() => {
+    fetchAuditories();
+  }, []);
+
   return (
     <div>
       <div
@@ -22,7 +32,11 @@ const AuditoriesPage = () => {
           marginBottom: `calc(1vh + 1vw)`,
         }}
       >
-        <ItemsList />
+        <ItemsList
+          items={auditories}
+          errorMessage="Аудиторий не найдено!"
+          isLoading={isLoading}
+        />
       </Container>
     </div>
   );

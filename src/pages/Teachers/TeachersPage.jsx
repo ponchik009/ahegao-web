@@ -3,8 +3,16 @@ import { Container } from "@mui/material";
 
 import ItemsList from "../../components/ItemsList/ItemsList";
 import Navbar from "../../components/Navbar/Navbar";
+import { useFetch } from "../../hooks/UseFetch";
+import { ApiData } from "../../api/api";
 
 const TeachersPage = () => {
+  const [teachers, fetchTeachers, isLoading] = useFetch(ApiData.getTeachers);
+
+  React.useEffect(() => {
+    fetchTeachers();
+  }, []);
+
   return (
     <div>
       <div
@@ -22,7 +30,11 @@ const TeachersPage = () => {
           marginBottom: `calc(1vh + 1vw)`,
         }}
       >
-        <ItemsList />
+        <ItemsList
+          items={teachers}
+          errorMessage="Преподавателей не найдено!"
+          isLoading={isLoading}
+        />
       </Container>
     </div>
   );

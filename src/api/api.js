@@ -25,3 +25,17 @@ export class ApiSchedule {
       .then((response) => response.data);
   }
 }
+
+export class ApiData {
+  static getGroups() {
+    return axios.get(`/groups`).then((response) => response.data);
+  }
+
+  static getTeachers() {
+    return axios.get(`/teachers`).then((response) => response.data);
+  }
+
+  static getAuditories() {
+    return axios.get(`/auditories`).then((response) => response.data);
+  }
+}
