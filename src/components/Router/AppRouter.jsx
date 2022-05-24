@@ -1,10 +1,12 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import AuditoriesPage from "../../pages/Auditories/AuditoriesPage";
+import AuditoriePage from "../../pages/Auditorie/AuditoriePage";
 import GroupPage from "../../pages/Group/GroupPage";
 import GroupsPage from "../../pages/Groups/GroupsPage";
 import HomePage from "../../pages/Home/HomePage";
 import TeachersPage from "../../pages/Teachers/TeachersPage";
+import TeacherPage from "../../pages/Teacher/TeacherPage";
 
 const AppRouter = () => {
   return (
@@ -20,9 +22,9 @@ const AppRouter = () => {
       {/* Страница группы: расписание группы */}
       <Route path="/groups/:groupName" element={<GroupPage />} />
       {/* Страница преподавателя: расписание преподавателя */}
-      <Route path="/teachers/:teacherName" />
+      <Route path="/teachers/:teacherName" element={<TeacherPage />}/>
       {/* Страница аудитории: расписание аудитории */}
-      <Route path="/auditories/:auditoryName" />
+      <Route path="/auditories/:auditoryName" element={<AuditoriePage />}/>
     </Routes>
   );
 };

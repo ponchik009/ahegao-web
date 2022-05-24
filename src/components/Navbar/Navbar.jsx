@@ -40,13 +40,15 @@ const Navbar = ({ size = 1, active }) => {
           "@media screen and (max-width: 40em)": {
             flexDirection: () => (size == 1 ? "column" : "row"),
             height: () => size == 1 && "80vh",
-            marginTop: "1vh",
+            marginTop: "1vh"
           },
         }}
+        style={{backgroundColor:"#D9D9D900", 
+        background:"rgba(217, 217, 217, 0)"}}
       >
         <StyledAction
           label="Расписание по группам"
-          icon={<GroupIcon sx={{ fontSize: `calc((5vh + 3vw) * ${size})` }} />}
+          icon={<GroupIcon sx={{ fontSize: `calc((5vh + 3vw) * ${size})`}} />}
           onClick={() => {
             navigate("/groups");
           }}

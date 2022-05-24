@@ -12,7 +12,7 @@ const HomePage = () => {
         flexDirection: "column",
       }}
     >
-      <Typography sx={{ fontSize: "10vw", marginTop: `calc(4vw + 4vh)` }}>
+      <Typography sx={{ fontSize: "10vw", marginTop: `calc(-1vw - 1vh)`, color:'#0E5157' }}>
         Расписание
       </Typography>
       <Navbar />
