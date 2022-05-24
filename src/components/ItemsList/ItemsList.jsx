@@ -1,13 +1,25 @@
-import { Button, Typography } from "@mui/material";
 import React from "react";
+import { Grid } from "@mui/material";
 
-const ItemsList = () => {
+import Item from "./Item";
+
+const ItemsList = ({ items = Array(16).fill("Проверка") }) => {
   return (
-    <Button style ={{width: 200, height: 100, cursor:'pointer'}} variant="outlined">
-        <Typography sx={{ display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center" }}>Проверка</Typography>
-    </Button>
+    <Grid
+      container
+      spacing={{
+        xs: 1,
+        sm: 2,
+        md: 4,
+      }}
+      alignItems="center"
+    >
+      {items.map((item, index) => (
+        <Grid item xs={12} sm={6} md={4} key={`${item}_${index}`}>
+          <Item name={item} />
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 

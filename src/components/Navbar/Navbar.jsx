@@ -24,7 +24,7 @@ const Navbar = ({ size = 1, active }) => {
   `;
 
   return (
-    <Box sx={{ width: `${100 * size}%` }}>
+    <Box sx={{ width: `${100}%` }}>
       <BottomNavigation
         showLabels
         value={value}
@@ -35,11 +35,12 @@ const Navbar = ({ size = 1, active }) => {
           display: "flex",
           justifyContent: "space-around",
           alignItems: "center",
-          marginTop: () => (size == 1 ? "20vh" : "5vh"),
+          marginTop: () => (size == 1 ? "15vh" : "5vh"),
+          px: "10vw",
           "@media screen and (max-width: 40em)": {
             flexDirection: () => (size == 1 ? "column" : "row"),
             height: () => size == 1 && "80vh",
-            marginTop: "3vh",
+            marginTop: "1vh",
           },
         }}
       >

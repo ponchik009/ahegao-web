@@ -1,6 +1,6 @@
-import { Container, Grid } from "@mui/material";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Container } from "@mui/material";
+
 import ItemsList from "../../components/ItemsList/ItemsList";
 import Navbar from "../../components/Navbar/Navbar";
 
@@ -16,21 +16,14 @@ const GroupsPage = () => {
       >
         <Navbar size={0.5} active={0} />
       </div>
-      <div>
-      <Container maxWidth="md" style={{ marginTop: "130px" }}>
-          <Grid container spacing={10}>
-            <Grid item xs={12} sm={6} md={4}>
-                <ItemsList/>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-                <ItemsList/>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-                <ItemsList/>
-            </Grid>
-          </Grid>
+      <Container
+        sx={{
+          marginTop: `calc(2vh + 2vw)`,
+          marginBottom: `calc(1vh + 1vw)`,
+        }}
+      >
+        <ItemsList />
       </Container>
-      </div>
     </div>
   );
 };
