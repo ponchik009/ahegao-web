@@ -7,19 +7,21 @@ import GroupIcon from "@mui/icons-material/Group";
 import SchoolIcon from "@mui/icons-material/School";
 import MeetingRoomIcon from "@mui/icons-material/MeetingRoom";
 import { styled } from "@mui/material";
+import { useMediaQuery } from "@mui/material/";
 
 // import "./Navbar.css";
 
 const Navbar = ({ size = 1, active }) => {
   const navigate = useNavigate();
   const [value, setValue] = React.useState(active);
+  const matches = useMediaQuery("(max-width: 40em)");
 
   const StyledAction = styled(BottomNavigationAction)`
     & .MuiBottomNavigationAction-label {
-      font-size: calc((1.5vh + 1.5vw) * ${size});
+      font-size: calc((1.5vh + 1.5vw) * ${matches ? 0.6 : size});
     }
     & .Mui-selected {
-      font-size: calc((1.5vh + 2vw) * ${size});
+      font-size: calc((1.5vh + 2vw) * ${matches ? 0.6 : size});
     }
   `;
 
@@ -43,7 +45,7 @@ const Navbar = ({ size = 1, active }) => {
           marginTop: () => (size == 1 ? "15vh" : "5vh"),
           px: "10vw",
           "@media screen and (max-width: 40em)": {
-            flexDirection: () => (size == 1 ? "column" : "row"),
+            flexDirection: "row",
             // height: () => size == 1 && "80vh",
             paddingBottom: "2vh",
             paddingTop: "2vh",
@@ -56,20 +58,30 @@ const Navbar = ({ size = 1, active }) => {
       >
         <StyledAction
           label="Расписание по группам"
-          icon={<GroupIcon sx={{ fontSize: `calc((5vh + 3vw) * ${size})` }} />}
+          icon={
+            <GroupIcon
+              sx={{ fontSize: `calc((5vh + 3vw) * ${matches ? 0.6 : size})` }}
+            />
+          }
           onClick={() => {
             navigate("/groups");
           }}
         />
         <StyledAction
           label="Расписание по преподавателям"
-          icon={<SchoolIcon sx={{ fontSize: `calc((5vh + 3vw) * ${size})` }} />}
+          icon={
+            <SchoolIcon
+              sx={{ fontSize: `calc((5vh + 3vw) * ${matches ? 0.6 : size})` }}
+            />
+          }
           onClick={() => navigate("/teachers")}
         />
         <StyledAction
           label="Расписание по аудиториям"
           icon={
-            <MeetingRoomIcon sx={{ fontSize: `calc((5vh + 3vw) * ${size})` }} />
+            <MeetingRoomIcon
+              sx={{ fontSize: `calc((5vh + 3vw) * ${matches ? 0.6 : size})` }}
+            />
           }
           onClick={() => navigate("/auditories")}
         />

@@ -6,16 +6,15 @@ import { useMediaQuery } from "@mui/material/";
 function App() {
   const matches = useMediaQuery("(max-width: 40em)");
 
-  console.log(matches);
   return (
     <div
       style={{
-        backgroundImage: "url(/img/bg.png)",
+        backgroundImage: !matches ? "url(/img/bg.png)" : "url(/img/bg_mob.png)",
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
-        backgroundPosition: matches ? "center" : "bottom",
+        backgroundPosition: matches ? "bottom" : "bottom",
         width: "100%",
-        height: matches ? "" : "100vh",
+        height: matches ? "100%" : "100vh",
         display: "flex",
         flexDirection: matches ? "column-reverse" : "column",
         justifyContent: matches ? "space-between" : "",
