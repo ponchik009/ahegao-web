@@ -7,7 +7,7 @@ import { ApiData } from "../../api/api";
 import { useFetch } from "../../hooks/UseFetch";
 
 const GroupsPage = () => {
-  const [groups, fetchGroups, isLoading] = useFetch(ApiData.getGroups);
+  const [groups, fetchGroups, isLoading] = useFetch(ApiData.getGroups, []);
 
   React.useEffect(() => {
     fetchGroups();

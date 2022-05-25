@@ -5,7 +5,7 @@ const Item = ({ name, onClick }) => {
   return (
     <Button
       style={{ cursor: "pointer", width: "100%", height: `10vh` }}
-      variant="outlined"
+      variant="contained"
       onClick={onClick}
     >
       <Typography

@@ -8,7 +8,8 @@ import { useFetch } from "../../hooks/UseFetch";
 
 const AuditoriesPage = () => {
   const [auditories, fetchAuditories, isLoading] = useFetch(
-    ApiData.getAuditories
+    ApiData.getAuditories,
+    []
   );
 
   React.useEffect(() => {
@@ -16,7 +17,7 @@ const AuditoriesPage = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <div
         style={{
           display: "flex",
@@ -29,7 +30,6 @@ const AuditoriesPage = () => {
       <Container
         sx={{
           marginTop: `calc(2vh + 2vw)`,
-          marginBottom: `calc(1vh + 1vw)`,
         }}
       >
         <ItemsList
@@ -38,7 +38,7 @@ const AuditoriesPage = () => {
           isLoading={isLoading}
         />
       </Container>
-    </div>
+    </>
   );
 };
 

@@ -24,7 +24,12 @@ const Navbar = ({ size = 1, active }) => {
   `;
 
   return (
-    <Box sx={{ width: `${100}%` }}>
+    <Box
+      sx={{
+        width: "100%",
+        height: "100%",
+      }}
+    >
       <BottomNavigation
         showLabels
         value={value}
@@ -39,16 +44,19 @@ const Navbar = ({ size = 1, active }) => {
           px: "10vw",
           "@media screen and (max-width: 40em)": {
             flexDirection: () => (size == 1 ? "column" : "row"),
-            height: () => size == 1 && "80vh",
-            marginTop: "1vh"
+            // height: () => size == 1 && "80vh",
+            paddingBottom: "2vh",
+            paddingTop: "2vh",
+            position: "fixed",
+            bottom: 0,
+            zIndex: 9999,
+            backgroundColor: "#F4CD8A",
           },
         }}
-        style={{backgroundColor:"#D9D9D900", 
-        background:"rgba(217, 217, 217, 0)"}}
       >
         <StyledAction
           label="Расписание по группам"
-          icon={<GroupIcon sx={{ fontSize: `calc((5vh + 3vw) * ${size})`}} />}
+          icon={<GroupIcon sx={{ fontSize: `calc((5vh + 3vw) * ${size})` }} />}
           onClick={() => {
             navigate("/groups");
           }}

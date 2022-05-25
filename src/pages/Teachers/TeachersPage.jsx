@@ -7,19 +7,23 @@ import { useFetch } from "../../hooks/UseFetch";
 import { ApiData } from "../../api/api";
 
 const TeachersPage = () => {
-  const [teachers, fetchTeachers, isLoading] = useFetch(ApiData.getTeachers);
+  const [teachers, fetchTeachers, isLoading] = useFetch(
+    ApiData.getTeachers,
+    []
+  );
 
   React.useEffect(() => {
     fetchTeachers();
   }, []);
 
   return (
-    <div>
+    <>
       <div
         style={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          height: "10vh",
         }}
       >
         <Navbar size={0.5} active={1} />
@@ -27,7 +31,6 @@ const TeachersPage = () => {
       <Container
         sx={{
           marginTop: `calc(2vh + 2vw)`,
-          marginBottom: `calc(1vh + 1vw)`,
         }}
       >
         <ItemsList
@@ -36,7 +39,7 @@ const TeachersPage = () => {
           isLoading={isLoading}
         />
       </Container>
-    </div>
+    </>
   );
 };
 

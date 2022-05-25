@@ -32,7 +32,9 @@ const ItemsList = ({
             sm: 2,
             md: 4,
           }}
+          sx={{ paddingBottom: "calc(1vw + 1vh)" }}
           alignItems="center"
+          justifyContent="center"
         >
           {items.map((item, index) => (
             <Grid item xs={12} sm={6} md={4} key={`${item}_${index}`}>
