@@ -38,6 +38,20 @@ export const formatSchedule = (startDate, schedule) => {
   const result = getScheduleObject(startDate);
   Object.entries(result).forEach(([key, value], index) => {
     schedule.forEach((pair) => {
+      pair.type =
+        typeof pair.type === "number"
+          ? pair.discipline
+            ? getPairByType(pair.type)
+            : getQueryByType(pair.type)
+          : pair.type;
+      // идентифицируем объект из queries
+      if (!pair.day) {
+        pair.discipline = pair.description;
+        pair.day = new Date(pair.dt).getDay();
+        if (!pair.groups) pair.groups = ["Перенос"];
+        if (!pair.teachers) pair.teachers = ["Перенос"];
+        if (!pair.auditories) pair.auditories = ["Перенос"];
+      }
       if (pair.day === index + 1) value.push(pair);
     });
   });
@@ -63,3 +77,16 @@ const getScheduleObject = (startDate) => {
 
 export const getPairByType = (type) =>
   type === 1 ? "Лекция" : type === 2 ? "Практика" : "Лабораторная работа";
+
+export const getQueryByType = (type) => {
+  switch (type) {
+    case 0:
+      return "Мероприятие";
+    case 1:
+      return "Проект";
+    case 3:
+      return "Перенос пары";
+    case 4:
+      return "Перенесенная пара";
+  }
+};

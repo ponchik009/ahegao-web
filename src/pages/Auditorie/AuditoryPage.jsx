@@ -24,7 +24,12 @@ const AuditoryPage = () => {
   const { auditoryName } = useParams();
 
   const [schedule, fetchSchedule, isLoading] = useFetch(
-    () => ApiSchedule.getScheduleByAuditory(formatDate(monday), auditoryName),
+    () =>
+      ApiSchedule.getFullScheduleByAuditory(
+        formatDate(monday),
+        formatDate(sunday),
+        auditoryName
+      ),
     []
   );
   const [parsedSchedule, setParsedSchedule] = React.useState();

@@ -24,7 +24,12 @@ const TeacherPage = () => {
   const { teacherName } = useParams();
 
   const [schedule, fetchSchedule, isLoading] = useFetch(
-    () => ApiSchedule.getScheduleByTeacher(formatDate(monday), teacherName),
+    () =>
+      ApiSchedule.getFullScheduleByTeacher(
+        formatDate(monday),
+        formatDate(sunday),
+        teacherName
+      ),
     []
   );
   const [parsedSchedule, setParsedSchedule] = React.useState();

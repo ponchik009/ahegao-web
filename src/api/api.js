@@ -24,6 +24,51 @@ export class ApiSchedule {
       )
       .then((response) => response.data);
   }
+
+  static getFullScheduleByGroup(weekBegining, weekEnding, group) {
+    const schedulePromise = axios.get(
+      `/schedule?week_begining=${weekBegining}&groups_like=${group}&_sort=day`
+    );
+    const queriesPromise = axios.get(
+      `/queries?groups_like=${group}&dt_gte=${weekBegining}&dt_lte=${weekEnding}&_sort=dt`
+    );
+
+    return Promise.all([schedulePromise, queriesPromise]).then(
+      ([schedule, queries]) => {
+        return schedule.data.concat(queries.data);
+      }
+    );
+  }
+
+  static getFullScheduleByTeacher(weekBegining, weekEnding, teacher) {
+    const schedulePromise = axios.get(
+      `/schedule?week_begining=${weekBegining}&teachers_like=${teacher}&_sort=day`
+    );
+    const queriesPromise = axios.get(
+      `/queries?teachers_like=${teacher}&dt_gte=${weekBegining}&dt_lte=${weekEnding}&_sort=dt`
+    );
+
+    return Promise.all([schedulePromise, queriesPromise]).then(
+      ([schedule, queries]) => {
+        return schedule.data.concat(queries.data);
+      }
+    );
+  }
+
+  static getFullScheduleByAuditory(weekBegining, weekEnding, auditory) {
+    const schedulePromise = axios.get(
+      `/schedule?week_begining=${weekBegining}&auditories_like=${auditory}&_sort=day`
+    );
+    const queriesPromise = axios.get(
+      `/queries?auditories_like=${auditory}&dt_gte=${weekBegining}&dt_lte=${weekEnding}&_sort=dt`
+    );
+
+    return Promise.all([schedulePromise, queriesPromise]).then(
+      ([schedule, queries]) => {
+        return schedule.data.concat(queries.data);
+      }
+    );
+  }
 }
 
 export class ApiData {

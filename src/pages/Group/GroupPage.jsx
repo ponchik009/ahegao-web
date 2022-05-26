@@ -24,7 +24,12 @@ const GroupPage = () => {
   const { groupName } = useParams();
 
   const [schedule, fetchSchedule, isLoading] = useFetch(
-    () => ApiSchedule.getScheduleByGroup(formatDate(monday), groupName),
+    () =>
+      ApiSchedule.getFullScheduleByGroup(
+        formatDate(monday),
+        formatDate(sunday),
+        groupName
+      ),
     []
   );
   const [parsedSchedule, setParsedSchedule] = React.useState();

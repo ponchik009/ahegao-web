@@ -47,7 +47,7 @@ const Weekday = ({ title, pairs, nonPairsMessage }) => {
                 <Typography>{`${
                   pair.groups.length > 1 ? "Группы" : "Группа"
                 }: ${pair.groups.join(", ")}`}</Typography>
-                <Typography>{`${getPairByType(pair.type)} ${
+                <Typography>{`${pair.type} ${
                   pair.subgroup_number
                     ? `, подгруппа ${pair.subgroup_number}`
                     : ""
