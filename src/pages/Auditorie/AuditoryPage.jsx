@@ -7,14 +7,14 @@ import { ApiSchedule } from "../../api/api";
 import { useFetch } from "../../hooks/UseFetch";
 import { formatDate, formatSchedule } from "../../utils/utils";
 
-const TeacherPage = () => {
+const AuditoryPage = () => {
   const [monday, setMonday] = React.useState(new Date());
   const [nowDate, setNowDate] = React.useState(new Date());
 
-  const { teacherName } = useParams();
+  const { auditoryName } = useParams();
 
   const [schedule, fetchSchedule, isLoading] = useFetch(
-    () => ApiSchedule.getScheduleByTeacher(formatDate(monday), teacherName),
+    () => ApiSchedule.getScheduleByAuditory(formatDate(monday), auditoryName),
     []
   );
   const [parsedSchedule, setParsedSchedule] = React.useState();
@@ -44,11 +44,15 @@ const TeacherPage = () => {
           alignItems: "center",
         }}
       >
-        <Navbar size={0.5} active={1} />
+        <Navbar size={0.5} active={2} />
       </div>
-      <Schedule schedule={parsedSchedule} isLoading={isLoading} />
+      <Schedule
+        schedule={parsedSchedule}
+        isLoading={isLoading}
+        nonPairsMessage="В этот день в аудитории нет пар!"
+      />
     </>
   );
 };
 
-export default TeacherPage;
+export default AuditoryPage;

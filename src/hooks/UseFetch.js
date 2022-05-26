@@ -1,7 +1,7 @@
 import React from "react";
 
 export const useFetch = (fetchFunction, initalValue) => {
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
   const [data, setData] = React.useState(initalValue);
 
   return [

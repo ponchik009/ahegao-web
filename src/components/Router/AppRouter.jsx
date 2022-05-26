@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import AuditoriesPage from "../../pages/Auditories/AuditoriesPage";
-import AuditoriePage from "../../pages/Auditorie/AuditoriePage";
+import AuditoryPage from "../../pages/Auditorie/AuditoryPage";
 import GroupPage from "../../pages/Group/GroupPage";
 import GroupsPage from "../../pages/Groups/GroupsPage";
 import HomePage from "../../pages/Home/HomePage";
@@ -22,9 +22,9 @@ const AppRouter = () => {
       {/* Страница группы: расписание группы */}
       <Route path="/groups/:groupName" element={<GroupPage />} />
       {/* Страница преподавателя: расписание преподавателя */}
-      <Route path="/teachers/:teacherName" element={<TeacherPage />}/>
+      <Route path="/teachers/:teacherName" element={<TeacherPage />} />
       {/* Страница аудитории: расписание аудитории */}
-      <Route path="/auditories/:auditoryName" element={<AuditoriePage />}/>
+      <Route path="/auditories/:auditoryName" element={<AuditoryPage />} />
     </Routes>
   );
 };

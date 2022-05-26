@@ -32,7 +32,7 @@ const ItemsList = ({
             sm: 2,
             md: 4,
           }}
-          sx={{ paddingBottom: "calc(1vw + 1vh)" }}
+          sx={{ paddingBottom: "calc(1vw + 4vh)" }}
           alignItems="center"
           justifyContent="center"
         >

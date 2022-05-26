@@ -3,12 +3,21 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Schedule from "../../components/Schedule/Schedule";
 import { ApiSchedule } from "../../api/api";
+import { useParams } from "react-router-dom";
+import { useFetch } from "../../hooks/UseFetch";
+import { formatDate, formatSchedule } from "../../utils/utils";
 
 const GroupPage = () => {
   const [monday, setMonday] = React.useState(new Date());
   const [nowDate, setNowDate] = React.useState(new Date());
 
-  const [schedule, setSchedule] = React.useState([]);
+  const { groupName } = useParams();
+
+  const [schedule, fetchSchedule, isLoading] = useFetch(
+    () => ApiSchedule.getScheduleByGroup(formatDate(monday), groupName),
+    []
+  );
+  const [parsedSchedule, setParsedSchedule] = React.useState();
 
   React.useEffect(() => {
     const date = new Date();
@@ -19,14 +28,12 @@ const GroupPage = () => {
 
   React.useEffect(() => {
     if (monday.getDay() !== 1) return;
-
-    ApiSchedule.getScheduleByGroup(
-      monday.toISOString().split("T")[0],
-      "Мумрики"
-    ).then((data) => {
-      setSchedule(data);
-    });
+    fetchSchedule();
   }, [monday]);
+
+  React.useEffect(() => {
+    setParsedSchedule(formatSchedule(monday, schedule));
+  }, [schedule]);
 
   return (
     <>
@@ -39,7 +46,7 @@ const GroupPage = () => {
       >
         <Navbar size={0.5} active={0} />
       </div>
-      <Schedule />
+      <Schedule schedule={parsedSchedule} isLoading={isLoading} />
     </>
   );
 };

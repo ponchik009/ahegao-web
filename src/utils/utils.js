@@ -1,0 +1,95 @@
+export const formatDate = (date) => {
+  let year = date.getFullYear();
+  let month = String(date.getMonth() + 1);
+  if (month.length == 1) month = "0" + month;
+  let day = String(date.getDate());
+  if (day.length == 1) day = "0" + day;
+
+  return `${year}-${month}-${day}`;
+};
+
+const months = [
+  "Января",
+  "Февраля",
+  "Марта",
+  "Апреля",
+  "Мая",
+  "Июня",
+  "Июля",
+  "Августа",
+  "Сентября",
+  "Октября",
+  "Ноября",
+  "Декабря",
+];
+
+const daysOfWeek = {
+  1: "Понедельник",
+  2: "Вторник",
+  3: "Среда",
+  4: "Четверг",
+  5: "Пятница",
+  6: "Суббота",
+};
+
+export const formatSchedule = (startDate, schedule) => {
+  const result = getScheduleObject(startDate);
+  Object.entries(result).forEach(([key, value], index) => {
+    schedule.forEach((pair) => {
+      if (pair.day === index + 1) value.push(pair);
+    });
+  });
+  Object.entries(result).forEach(([key, value]) => {
+    value.sort((pair1, pair2) => pair1.pair - pair2.pair);
+  });
+
+  return result;
+};
+
+const getScheduleObject = (startDate) => {
+  const result = {};
+  const currentDate = startDate;
+  Object.entries(daysOfWeek).forEach(([key, value]) => {
+    switch (+key) {
+      case 1:
+        result[
+          `${value}, ${currentDate.getDate()} ${months[currentDate.getMonth()]}`
+        ] = [];
+        break;
+      case 2:
+        currentDate.setDate(currentDate.getDate() + 1);
+        result[
+          `${value}, ${currentDate.getDate()} ${months[currentDate.getMonth()]}`
+        ] = [];
+        break;
+      case 3:
+        currentDate.setDate(currentDate.getDate() + 1);
+        result[
+          `${value}, ${currentDate.getDate()} ${months[currentDate.getMonth()]}`
+        ] = [];
+        break;
+      case 4:
+        currentDate.setDate(currentDate.getDate() + 1);
+        result[
+          `${value}, ${currentDate.getDate()} ${months[currentDate.getMonth()]}`
+        ] = [];
+        break;
+      case 5:
+        currentDate.setDate(currentDate.getDate() + 1);
+        result[
+          `${value}, ${currentDate.getDate()} ${months[currentDate.getMonth()]}`
+        ] = [];
+        break;
+      case 6:
+        currentDate.setDate(currentDate.getDate() + 1);
+        result[
+          `${value}, ${currentDate.getDate()} ${months[currentDate.getMonth()]}`
+        ] = [];
+        break;
+    }
+  });
+  return result;
+};
+
+export const getPairByType = (type) =>
+  type === 1 ? "Лекция" : type === 2 ? "Практика" : "Лабораторная работа";
