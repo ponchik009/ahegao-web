@@ -9,7 +9,7 @@ function App() {
   return (
     <div
       style={{
-        backgroundImage: !matches ? "url(/img/bg.png)" : "url(/img/bg_mob.png)",
+        backgroundImage: !matches ? "url(/img/bg.png)" : "", // url(/img/bg_mob.png)
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
         backgroundPosition: "bottom",
