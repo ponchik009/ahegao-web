@@ -26,7 +26,7 @@ const HomePage = () => {
           textAlign: "center",
         }}
       >
-        Расписание университета мумми-дола
+        Расписание университета муми-долла
       </Typography>
       <Navbar />
     </div>
