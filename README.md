@@ -20,8 +20,8 @@ $ npm start
 
 ### 1. Клонирование репозитория
 
-$ git clone https://github.com/ponchik009/ahegao-web
-$ cd ahegao-web
+<p>$ git clone https://github.com/ponchik009/ahegao-web</p>
+<p>$ cd ahegao-web</p>
 
 ### 2. Установка пакетов
 
