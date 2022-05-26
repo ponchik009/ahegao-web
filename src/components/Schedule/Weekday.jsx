@@ -11,13 +11,13 @@ import { getPairByType } from "../../utils/utils";
 const Weekday = ({ title, pairs, nonPairsMessage }) => {
   return (
     <Grid item xs={12} sm={6} md={4}>
-      <Accordion style={{ width: "100%", backgroundColor: "#F5F5DC	" }}>
+      <Accordion style={{ width: "100%", backgroundColor: "#F5F5DC" }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <Typography sx={{ fontSize: "calc(3vh + 0.05vw)" }}>
+          <Typography sx={{ fontSize: "calc(2vh + 0.05vw)" }}>
             {title}
           </Typography>
         </AccordionSummary>

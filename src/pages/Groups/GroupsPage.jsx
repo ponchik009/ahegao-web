@@ -1,5 +1,5 @@
 import React from "react";
-import { CircularProgress, Container } from "@mui/material";
+import { Container } from "@mui/material";
 
 import ItemsList from "../../components/ItemsList/ItemsList";
 import Navbar from "../../components/Navbar/Navbar";

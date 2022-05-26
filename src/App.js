@@ -12,7 +12,7 @@ function App() {
         backgroundImage: !matches ? "url(/img/bg.png)" : "url(/img/bg_mob.png)",
         backgroundRepeat: "no-repeat",
         backgroundSize: "contain",
-        backgroundPosition: matches ? "bottom" : "bottom",
+        backgroundPosition: "bottom",
         width: "100%",
         height: matches ? "100%" : "100vh",
         display: "flex",

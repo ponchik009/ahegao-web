@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Container, CircularProgress, Typography } from "@mui/material";
 
 import Weekday from "./Weekday";
+import { useMediaQuery } from "@mui/material/";
 
 const Schedule = ({
   schedule,
@@ -9,6 +10,9 @@ const Schedule = ({
   errorMessage = "Не удалось получить раписание на данную неделю",
   nonPairsMessage = "Пар нет! Можно отдыхать!",
 }) => {
+  const matches = useMediaQuery("(max-width: 40em)");
+  const [nowDate, setNowDate] = React.useState(new Date());
+
   return (
     <>
       {isLoading ? (
@@ -17,6 +21,7 @@ const Schedule = ({
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            marginTop: matches ? `calc(30vh + 14vw)` : "calc(1.5vw + 1.5vh)",
           }}
         >
           <CircularProgress />
@@ -24,7 +29,7 @@ const Schedule = ({
       ) : (
         <Container
           style={{
-            marginTop: `calc(2vh + 5vw)`,
+            marginTop: matches ? `calc(10vh + 14vw)` : "calc(1.5vw + 1.5vh)",
             marginBottom: `calc(10vh + 5vw)`,
           }}
         >
@@ -37,10 +42,12 @@ const Schedule = ({
                 md: 4,
               }}
             >
-              {Object.entries(schedule).map(([key, pairs]) => (
+              {Object.entries(schedule).map(([key, pairs], index) => (
                 <Weekday
                   key={key}
-                  title={key}
+                  title={`${key} ${
+                    index + 1 === nowDate.getDay() ? " (сегодня)" : ""
+                  }`}
                   pairs={pairs}
                   nonPairsMessage={nonPairsMessage}
                 />

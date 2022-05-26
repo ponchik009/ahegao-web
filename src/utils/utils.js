@@ -1,9 +1,11 @@
 export const formatDate = (date) => {
+  if (!date) return;
+
   let year = date.getFullYear();
   let month = String(date.getMonth() + 1);
-  if (month.length == 1) month = "0" + month;
+  if (month.length === 1) month = "0" + month;
   let day = String(date.getDate());
-  if (day.length == 1) day = "0" + day;
+  if (day.length === 1) day = "0" + day;
 
   return `${year}-${month}-${day}`;
 };
@@ -46,47 +48,15 @@ export const formatSchedule = (startDate, schedule) => {
   return result;
 };
 
+export const getWeekdayAsKey = (date) =>
+  `${daysOfWeek[date.getDay()]}, ${date.getDate()} ${months[date.getMonth()]}`;
+
 const getScheduleObject = (startDate) => {
   const result = {};
-  const currentDate = startDate;
+  const currentDate = new Date(startDate);
   Object.entries(daysOfWeek).forEach(([key, value]) => {
-    switch (+key) {
-      case 1:
-        result[
-          `${value}, ${currentDate.getDate()} ${months[currentDate.getMonth()]}`
-        ] = [];
-        break;
-      case 2:
-        currentDate.setDate(currentDate.getDate() + 1);
-        result[
-          `${value}, ${currentDate.getDate()} ${months[currentDate.getMonth()]}`
-        ] = [];
-        break;
-      case 3:
-        currentDate.setDate(currentDate.getDate() + 1);
-        result[
-          `${value}, ${currentDate.getDate()} ${months[currentDate.getMonth()]}`
-        ] = [];
-        break;
-      case 4:
-        currentDate.setDate(currentDate.getDate() + 1);
-        result[
-          `${value}, ${currentDate.getDate()} ${months[currentDate.getMonth()]}`
-        ] = [];
-        break;
-      case 5:
-        currentDate.setDate(currentDate.getDate() + 1);
-        result[
-          `${value}, ${currentDate.getDate()} ${months[currentDate.getMonth()]}`
-        ] = [];
-        break;
-      case 6:
-        currentDate.setDate(currentDate.getDate() + 1);
-        result[
-          `${value}, ${currentDate.getDate()} ${months[currentDate.getMonth()]}`
-        ] = [];
-        break;
-    }
+    result[getWeekdayAsKey(currentDate)] = [];
+    currentDate.setDate(currentDate.getDate() + 1);
   });
   return result;
 };
