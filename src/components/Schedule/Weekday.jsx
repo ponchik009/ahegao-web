@@ -6,12 +6,15 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Divider, Grid } from "@mui/material";
-import { getPairByType } from "../../utils/utils";
 
-const Weekday = ({ title, pairs, nonPairsMessage }) => {
+const Weekday = ({ title, pairs, nonPairsMessage, expanded, onChange }) => {
   return (
     <Grid item xs={12} sm={6} md={4}>
-      <Accordion style={{ width: "100%", backgroundColor: "#F5F5DC" }}>
+      <Accordion
+        style={{ width: "100%", backgroundColor: "#F5F5DC" }}
+        expanded={expanded}
+        onChange={onChange}
+      >
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"

@@ -24,7 +24,7 @@ const ItemsList = ({
         >
           <CircularProgress />
         </div>
-      ) : items.length ? (
+      ) : items && items.length ? (
         <Grid
           container
           spacing={{
@@ -47,7 +47,9 @@ const ItemsList = ({
         </Grid>
       ) : (
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <Typography sx={{ fontSize: "10vh" }}>{errorMessage}</Typography>
+          <Typography sx={{ fontSize: "calc(3vw + 3vh)", textAlign: "center" }}>
+            {errorMessage}
+          </Typography>
         </div>
       )}
     </>

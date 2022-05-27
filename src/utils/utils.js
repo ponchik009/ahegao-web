@@ -34,6 +34,19 @@ const daysOfWeek = {
   6: "Суббота",
 };
 
+export const isToday = (title) => {
+  const date = new Date();
+  const weekday = title.split(", ")[0];
+  const day = title.split(" ")[1];
+  const month = title.split(" ")[2];
+
+  return (
+    daysOfWeek[date.getDay()] === weekday &&
+    date.getDate() === +day &&
+    months[date.getMonth()] === month
+  );
+};
+
 export const formatSchedule = (startDate, schedule) => {
   const result = getScheduleObject(startDate);
   Object.entries(result).forEach(([key, value], index) => {

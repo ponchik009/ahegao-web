@@ -1,8 +1,15 @@
 import React from "react";
-import { Grid, Container, CircularProgress, Typography } from "@mui/material";
+import {
+  Grid,
+  Container,
+  CircularProgress,
+  Typography,
+  Button,
+} from "@mui/material";
 
 import Weekday from "./Weekday";
 import { useMediaQuery } from "@mui/material/";
+import { isToday } from "../../utils/utils";
 
 const Schedule = ({
   schedule,
@@ -11,7 +18,13 @@ const Schedule = ({
   nonPairsMessage = "Пар нет! Можно отдыхать!",
 }) => {
   const matches = useMediaQuery("(max-width: 40em)");
-  const [nowDate, setNowDate] = React.useState(new Date());
+  const [allOpen, setAllOpen] = React.useState([]);
+
+  const handleAllOpen = () => {
+    if (allOpen.length === 6) {
+      setAllOpen([]);
+    } else setAllOpen(Object.keys(schedule));
+  };
 
   return (
     <>
@@ -33,7 +46,10 @@ const Schedule = ({
             marginBottom: `calc(10vh + 5vw)`,
           }}
         >
-          {schedule ? (
+          <Button onClick={handleAllOpen}>{`${
+            allOpen.length === 6 ? "Закрыть все" : "Открыть все"
+          }`}</Button>
+          {Object.values(schedule).some((val) => val.length > 0) ? (
             <Grid
               container
               spacing={{
@@ -45,11 +61,15 @@ const Schedule = ({
               {Object.entries(schedule).map(([key, pairs], index) => (
                 <Weekday
                   key={key}
-                  title={`${key} ${
-                    index + 1 === nowDate.getDay() ? " (сегодня)" : ""
-                  }`}
+                  title={`${key} ${isToday(key) ? " (сегодня)" : ""}`}
                   pairs={pairs}
                   nonPairsMessage={nonPairsMessage}
+                  expanded={allOpen.some((val) => val === key)}
+                  onChange={(event, isExpanded) => {
+                    !isExpanded
+                      ? setAllOpen(allOpen.filter((val) => val !== key))
+                      : setAllOpen([...allOpen, key]);
+                  }}
                 />
               ))}
             </Grid>
