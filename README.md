@@ -15,3 +15,28 @@ $ npm run server
 ## Инструкция по старту. Запуск приложения
 
 $ npm start
+
+## Инструкция по развертыванию.
+
+### 1. Клонирование репозитория
+
+<p>$ git clone https://github.com/ponchik009/ahegao-web</p>
+<p>$ cd ahegao-web</p>
+
+### 2. Установка пакетов
+
+$ npm install
+
+### 3. Конфигурация
+
+$ nano .env
+REACT_APP_API_URL=http(s)://<домен>/api
+PORT = <порт>
+
+### 4. Сборка
+
+$ npm run build
+
+### 5. Запуск
+
+$ node server.js
